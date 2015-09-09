@@ -1,5 +1,9 @@
 # SwiftProductGenerator
-A cartesian product generator written in swift
+A generic cartesian product generator written in swift
+
+## Mission
+Reduce memory consumption and processing time for cartesian product of arbitrary arrays. 
+Initially used in a General Arc Consistency implementation
 
 
 ## Usage
