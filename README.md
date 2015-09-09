@@ -2,12 +2,11 @@
 A generic cartesian product generator written in swift
 
 ## Mission
-Reduce memory consumption and processing time for cartesian product of arbitrary arrays. 
-Initially used in a General Arc Consistency implementation
+Reduce memory consumption and processing time for cartesian product of arbitrary arrays
 
 
 ## Usage
-The generator can be initialized with an array containing the arrays to be combined
+The generator is initialized with an array containing the arrays to be combined:
 ```swift
 let arrays = [
   [0,1],
@@ -18,7 +17,7 @@ let arrays = [
 let generator = ProductGenerator(arrays: arrays)
 ```
 
-An equivalent statement would be
+An equivalent statement would be:
 ```swift
 let generator = ProductGenerator(array: [0,1], repeat: 2)
 ```
@@ -36,4 +35,5 @@ The generator from the examples will generate this array lazily
   [1, 1, 1]
 ]
 ```
+
 
