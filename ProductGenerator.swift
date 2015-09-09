@@ -1,5 +1,5 @@
 //
-//  ArrayPermutationsGenerator.swift
+//  ProductGenerator.swift
 //  
 //
 //  Created by Øyvind Grimnes on 09/09/15.
