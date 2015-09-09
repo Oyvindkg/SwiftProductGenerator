@@ -1,5 +1,5 @@
 # SwiftProductGenerator
-A generic cartesian product generator written in swift. Similar to Python's itertool.Product
+A generic cartesian product generator written in swift
 
 ## Mission
 Reduce memory consumption and processing time for cartesian product of arbitrary arrays
