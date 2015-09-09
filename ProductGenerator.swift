@@ -15,7 +15,7 @@ A cartesian product generator
 :discussion:    Generates the cartesian product of arrays, or repetitions of an array. The rightmost element is advanced every iteration which ensures that if the input is sorted, the output will be sorted as well.
 */
 
-public struct ProductGenerator<T>: GeneratorType, SequenceType {
+public struct product<T>: GeneratorType, SequenceType {
     
     /// Private variable to manage where to get next element in each pool
     private var indices : [Int]
@@ -24,6 +24,7 @@ public struct ProductGenerator<T>: GeneratorType, SequenceType {
     /// Terminate the generation on completion
     private var done : Bool = false
     
+    
     /**
     Initiates the generator with an array of arrays to be combined
     
@@ -31,12 +32,14 @@ public struct ProductGenerator<T>: GeneratorType, SequenceType {
     
     :returns:   An array containing the products of the provided arrays
     */
-    public init(arrays: [[T]]) {
+    
+    public init(_ arrays: [[T]]) {
+
         self.pools = arrays
         self.indices = [Int](count: self.pools.count, repeatedValue: 0)
         self.done = pools.filter({$0.count == 0}).count != 0
     }
-    
+
     
     /**
     Initiates the generator with an array repeated 'repeat' times
@@ -46,10 +49,13 @@ public struct ProductGenerator<T>: GeneratorType, SequenceType {
     
     :returns:   An array containing the products of the provided array repeated 'repeat' times
     */
-    public init(array: [T], repeat: Int) {
+    
+    public init(_ array: [T], repeat: Int) {
+        assert(repeat >= 0, "Repeat must be >= 0")
+        
         self.pools = [[T]](count: repeat, repeatedValue: array)
         self.indices = [Int](count: self.pools.count, repeatedValue: 0)
-        self.done = pools.filter({$0.count == 0}).count != 0
+        self.done = repeat <= 0 && pools.filter({$0.count == 0}).count != 0
     }
     
     
@@ -58,17 +64,17 @@ public struct ProductGenerator<T>: GeneratorType, SequenceType {
     
     :returns:   An optional element
     */
+    
     public mutating func next() -> [T]? {
         if done {
             return nil
         }
-        
+
         let element = map( enumerate(pools) ) {
             $1[ self.indices[$0] ]
         }
         
         self.incrementLocationInPool(self.pools.count-1)
-        
         return element
     }
     
@@ -82,6 +88,7 @@ public struct ProductGenerator<T>: GeneratorType, SequenceType {
     
     :returns:       An array containing the products of the provided array repeated 'repeat' times
     */
+    
     mutating private func incrementLocationInPool(poolIndex: Int) {
         if poolIndex < 0 {
             return done = true
@@ -101,7 +108,8 @@ public struct ProductGenerator<T>: GeneratorType, SequenceType {
     
     :returns:       A cartesian product generator
     */
-    public func generate() -> ProductGenerator {
+    public func generate() -> product {
         return self
     }
 }
+
