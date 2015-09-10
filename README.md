@@ -16,12 +16,12 @@ let arrays = [
   [0,1]
 ]
 
-let generator = ProductGenerator(arrays: arrays)
+let generator = product(arrays)
 ```
 
 An equivalent statement would be:
 ```swift
-let generator = ProductGenerator(array: [0,1], repeat: 2)
+let generator = product([0,1], repeat: 3)
 ```
 
 The generator from the examples will generate this array lazily
