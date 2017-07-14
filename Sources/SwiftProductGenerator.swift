@@ -13,7 +13,7 @@ A cartesian product generator
 :discussion:    Generates the cartesian product of arrays, or repetitions of an array. The rightmost element is advanced every iteration which ensures that if the input is sorted, the output will be sorted as well.
 */
 
-public struct product<T>: IteratorProtocol, Sequence {
+public struct Product<T>: IteratorProtocol, Sequence {
 
     /// Private variable to manage where to get next element in each pool
     private var indices : [Int]
@@ -106,7 +106,7 @@ public struct product<T>: IteratorProtocol, Sequence {
 
     :returns:       A cartesian product generator
     */
-    public func generate() -> product {
+    public func generate() -> Product {
         return self
     }
 }
