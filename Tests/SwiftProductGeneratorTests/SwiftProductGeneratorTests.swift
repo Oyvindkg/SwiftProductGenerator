@@ -3,9 +3,9 @@ import XCTest
 
 class SwiftProductGeneratorTests: XCTestCase {
     func testEmptySet() {
-        let gen = Product<Int>([])
+        let gen = Product<Int, [Int]>([])
         let res = gen.map{ $0 }
-        XCTAssertTrue(res[0].isEmpty)
+        XCTAssertTrue(res.isEmpty)
     }
 
     func testSingleton() {
@@ -44,10 +44,26 @@ class SwiftProductGeneratorTests: XCTestCase {
         XCTAssertTrue(res.contains{ $0 == [1,2,3] })
     }
 
+    func testRepeatingInitializer() {
+        let gen = Product(repeating: [0,1], count: 3)
+        let res = gen.map{ $0 }
+
+        XCTAssertEqual(res.count, 8)
+        XCTAssertTrue(res.contains{ $0 == [0,0,0] })
+        XCTAssertTrue(res.contains{ $0 == [0,0,1] })
+        XCTAssertTrue(res.contains{ $0 == [0,1,0] })
+        XCTAssertTrue(res.contains{ $0 == [0,1,1] })
+        XCTAssertTrue(res.contains{ $0 == [1,0,0] })
+        XCTAssertTrue(res.contains{ $0 == [1,0,1] })
+        XCTAssertTrue(res.contains{ $0 == [1,1,0] })
+        XCTAssertTrue(res.contains{ $0 == [1,1,1] })
+    }
+
     static var allTests = [
-        ("testEmptySet" , testEmptySet),
-        ("testSingleton", testEmptySet),
-        ("testPair"     , testEmptySet),
-        ("testTriple"   , testEmptySet),
+        ("testEmptySet"            , testEmptySet),
+        ("testSingleton"           , testEmptySet),
+        ("testPair"                , testEmptySet),
+        ("testTriple"              , testEmptySet),
+        ("testRepeatingInitializer", testRepeatingInitializer),
     ]
 }
