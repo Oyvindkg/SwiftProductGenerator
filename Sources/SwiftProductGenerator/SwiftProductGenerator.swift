@@ -85,8 +85,9 @@ public struct Product<T, C: Collection>: IteratorProtocol, Sequence
                    repeated 'repeat' times
     */
     mutating private func incrementLocationInPool(poolIndex: Int) {
-        if poolIndex < 0 {
-            return done = true
+        guard self.pools.indices.contains(poolIndex) else {
+            done = true
+            return
         }
 
         self.indices[poolIndex] = self.pools[poolIndex].index(after: self.indices[poolIndex])
