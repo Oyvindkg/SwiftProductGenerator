@@ -2,8 +2,7 @@
 A generic cartesian product generator written in swift similar to Python's [`itertools.Product`](https://docs.python.org/3/library/itertools.html).
 
 ## Mission
-Reduce memory consumption and processing time for cartesian product of arbitrary arrays.
-
+Reduce memory consumption and processing time for cartesian product of arbitrary collections.
 
 ## Usage
 The generator is initialized with an array containing the collections to be combined:
